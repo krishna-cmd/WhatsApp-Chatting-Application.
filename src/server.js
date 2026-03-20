@@ -1,6 +1,7 @@
 const http = require("http");
 const { Server } = require("socket.io");
 const app = require("./app");
+const logger = require("./utils/logger");
 
 //creating http server manually as the socket need to interact with http
 const server = http.createServer(app);
@@ -13,20 +14,30 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("User connected:", socket.id);
+  logger.info("User connected:", socket.id);
 
-  socket.on("send_message", (data) => {
-    console.log("Message Received:", data);
-
-    io.emit("recevie_message", data);
+  socket.on("join", (userId) => {
+    socket.join(userId);
+    logger.info(`User ${userId} joined the room`);
   });
 
+  socket.on("send_message", ({senderId, receiverId, message}) => {
+    logger.info(`Message from ${senderId} to ${receiverId}: ${message}`);
+
+    io.to(receiverId).emit("receiver_message", {
+      senderId,
+      message,
+    });
+  });
+
+  
+
   socket.on("disconnect", () => {
-    console.log("User Disconnect:", socket.id);
+    logger.info("User Disconnect:", socket.id);
   });
 });
 
 const PORT = 3000;
 server.listen(PORT, () => {
-  console.log(`Server is running on the port ${PORT}`);
+ logger.info(`Server is running on the port ${PORT}`);
 });

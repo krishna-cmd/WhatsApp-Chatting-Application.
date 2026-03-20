@@ -1,0 +1,184 @@
+2026-03-17T10:01:50.495Z [INFO]: 
+            Server is running on the port 3000
+2026-03-17T10:01:53.335Z [INFO]: 
+            User connected:
+2026-03-17T10:01:53.377Z [INFO]: 
+            User krishna joined the room
+2026-03-17T10:01:53.471Z [INFO]: 
+            Message from krishna to sharan: Hello
+2026-03-17T10:01:53.473Z [INFO]: 
+            Message from krishna to : Hello
+2026-03-17T10:01:54.143Z [INFO]: 
+            User connected:
+2026-03-17T10:01:54.169Z [INFO]: 
+            User Sharan joined the room
+2026-03-17T10:01:54.173Z [INFO]: 
+            Message from Sharan to krishna: hello
+2026-03-17T10:01:54.177Z [INFO]: 
+            Message from Sharan to : hello
+2026-03-17T10:02:09.345Z [INFO]: 
+            Message from krishna to null: Hello
+2026-03-17T10:05:31.741Z [INFO]: 
+            Server is running on the port 3000
+2026-03-17T10:05:33.536Z [INFO]: 
+            User connected:
+2026-03-17T10:05:33.909Z [INFO]: 
+            User connected:
+2026-03-17T10:05:35.912Z [INFO]: 
+            User Disconnect:
+2026-03-17T10:05:44.392Z [INFO]: 
+            User connected:
+2026-03-17T10:05:44.423Z [INFO]: 
+            User krishna joined the room
+2026-03-17T10:05:55.029Z [INFO]: 
+            User Disconnect:
+2026-03-17T10:06:02.482Z [INFO]: 
+            User connected:
+2026-03-17T10:06:02.515Z [INFO]: 
+            User sharan joined the room
+2026-03-17T10:07:34.875Z [INFO]: 
+            Server is running on the port 3000
+2026-03-17T10:07:36.173Z [INFO]: 
+            User connected:
+2026-03-17T10:07:36.390Z [INFO]: 
+            User connected:
+2026-03-17T10:07:40.148Z [INFO]: 
+            User Disconnect:
+2026-03-17T10:07:46.993Z [INFO]: 
+            User connected:
+2026-03-17T10:07:47.037Z [INFO]: 
+            User krishna joined the room
+2026-03-17T10:07:51.993Z [INFO]: 
+            User Disconnect:
+2026-03-17T10:07:58.383Z [INFO]: 
+            User connected:
+2026-03-17T10:07:58.405Z [INFO]: 
+            User sharan joined the room
+2026-03-17T10:08:07.952Z [INFO]: 
+            Message from krishna to sharan: hello
+2026-03-17T10:08:18.573Z [INFO]: 
+            Message from sharan to krishna: hello
+2026-03-17T10:09:27.212Z [INFO]: 
+            Server is running on the port 3000
+2026-03-17T10:09:27.429Z [INFO]: 
+            User connected:
+2026-03-17T10:09:27.453Z [INFO]: 
+            User connected:
+2026-03-17T10:09:46.979Z [INFO]: 
+            User Disconnect:
+2026-03-17T10:09:54.337Z [INFO]: 
+            User connected:
+2026-03-17T10:09:54.372Z [INFO]: 
+            User krishna joined the room
+2026-03-17T10:09:56.437Z [INFO]: 
+            User Disconnect:
+2026-03-17T10:10:01.963Z [INFO]: 
+            User connected:
+2026-03-17T10:10:01.984Z [INFO]: 
+            User sharan joined the room
+2026-03-17T10:10:12.295Z [INFO]: 
+            Message from krishna to sharan: hello
+2026-03-17T10:11:35.722Z [INFO]: 
+            Server is running on the port 3000
+2026-03-17T10:11:35.861Z [INFO]: 
+            User connected:
+2026-03-17T10:11:41.130Z [INFO]: 
+            Message from krishna to sharan: hello
+2026-03-17T10:11:42.145Z [INFO]: 
+            User connected:
+2026-03-17T10:11:43.810Z [INFO]: 
+            User Disconnect:
+2026-03-17T10:11:50.259Z [INFO]: 
+            User connected:
+2026-03-17T10:11:50.363Z [INFO]: 
+            User krishna joined the room
+2026-03-17T10:11:53.752Z [INFO]: 
+            User Disconnect:
+2026-03-17T10:12:00.337Z [INFO]: 
+            User connected:
+2026-03-17T10:12:00.357Z [INFO]: 
+            User sharan joined the room
+2026-03-17T10:12:05.427Z [INFO]: 
+            Message from krishna to sharan: helllo
+2026-03-17T10:12:07.120Z [INFO]: 
+            Message from krishna to sharan: helllo
+2026-03-17T10:12:07.684Z [INFO]: 
+            Message from krishna to sharan: helllo
+2026-03-17T10:12:07.855Z [INFO]: 
+            Message from krishna to sharan: helllo
+2026-03-17T10:12:12.901Z [INFO]: 
+            Message from sharan to krishna: hello
+2026-03-17T10:12:13.412Z [INFO]: 
+            Message from sharan to krishna: hello
+2026-03-17T10:12:13.650Z [INFO]: 
+            Message from sharan to krishna: hello
+2026-03-17T10:13:39.096Z [INFO]: 
+            Server is running on the port 3000
+2026-03-17T10:13:39.176Z [INFO]: 
+            User connected:
+2026-03-17T10:13:39.996Z [INFO]: 
+            User connected:
+2026-03-17T10:13:48.617Z [INFO]: 
+            User Disconnect:
+2026-03-17T10:13:58.542Z [INFO]: 
+            User connected:
+2026-03-17T10:13:58.589Z [INFO]: 
+            User krishna joined the room
+2026-03-17T10:14:00.972Z [INFO]: 
+            User Disconnect:
+2026-03-17T10:14:07.416Z [INFO]: 
+            User connected:
+2026-03-17T10:14:07.453Z [INFO]: 
+            User sharan joined the room
+2026-03-17T10:14:15.114Z [INFO]: 
+            Message from krishna to sharan: hello
+2026-03-17T10:14:23.806Z [INFO]: 
+            Message from sharan to krishna: hello
+2026-03-17T10:15:58.729Z [INFO]: 
+            Message from krishna to sharan: how are you doing
+2026-03-17T10:16:10.798Z [INFO]: 
+            Message from sharan to krishna: I am good how are you doing?
+2026-03-17T10:18:20.470Z [INFO]: 
+            User connected:
+2026-03-17T10:18:20.499Z [INFO]: 
+            User uday joined the room
+2026-03-17T10:18:26.826Z [INFO]: 
+            Message from uday to sharan: helllo
+2026-03-17T10:21:14.736Z [INFO]: 
+            Server is running on the port 3000
+2026-03-17T10:21:16.175Z [INFO]: 
+            User connected:
+2026-03-17T10:21:16.183Z [INFO]: 
+            User connected:
+2026-03-17T10:21:17.134Z [INFO]: 
+            User connected:
+2026-03-17T10:22:09.865Z [INFO]: 
+            Message from krishna to sharan: 
+2026-03-17T10:22:12.471Z [INFO]: 
+            Message from krishna to sharan: 
+2026-03-17T10:22:18.012Z [INFO]: 
+            Message from krishna to sharan: helllo
+2026-03-17T10:22:26.273Z [INFO]: 
+            Message from krishna to sharan: helllo
+2026-03-17T10:22:26.335Z [INFO]: 
+            Message from krishna to sharan: helllo
+2026-03-17T10:22:29.849Z [INFO]: 
+            User Disconnect:
+2026-03-17T10:22:52.159Z [INFO]: 
+            User Disconnect:
+2026-03-17T10:22:56.308Z [INFO]: 
+            User connected:
+2026-03-17T10:22:56.321Z [INFO]: 
+            User sharan joined the room
+2026-03-17T10:22:57.482Z [INFO]: 
+            User connected:
+2026-03-17T10:22:58.951Z [INFO]: 
+            User Disconnect:
+2026-03-17T10:23:10.743Z [INFO]: 
+            User connected:
+2026-03-17T10:23:10.840Z [INFO]: 
+            User krishna joined the room
+2026-03-17T10:23:17.906Z [INFO]: 
+            Message from krishna to sharan: helllo
+2026-03-17T10:23:21.888Z [INFO]: 
+            Message from uday to sharan: helllo

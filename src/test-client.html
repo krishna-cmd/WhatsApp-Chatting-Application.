@@ -6,7 +6,7 @@
 <body>
 
 <h2>Realtime Chat</h2>
-
+<input id="receiver" placeholder="Enter receiver ID"/>
 <input id="message" placeholder="Type message"/>
 <button onclick="sendMessage()">Send</button>
 
@@ -17,25 +17,36 @@
 <script>
 
 const socket = io("http://localhost:3000");
+const userId = prompt("Enter your userId");
+const receiverId = prompt("Enter your receiverId");
+
 
 socket.on("connect", () => {
   console.log("Connected:", socket.id);
 });
 
-socket.on("receive_message", (data) => {
+socket.on("receiver_message", (data) => {
   console.log("Message received in browser:", data);
 
   const li = document.createElement("li");
-  li.innerText = data;
+  li.innerText = `${data.senderId || 'unknown'}: ${data.message || data}`;
 
   document.getElementById("messages").appendChild(li);
 });
 
+socket.emit("join", userId);
+
 function sendMessage() {
   const msg = document.getElementById("message").value;
+  
 
-  socket.emit("send_message", msg);
+  socket.emit("send_message", {
+    senderId: userId,
+    receiverId,
+    message: msg,
+  });
 }
+
 
 </script>
 
