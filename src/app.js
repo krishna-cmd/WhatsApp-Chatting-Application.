@@ -6,4 +6,4 @@ app.get("/health", (req, res) => {
   res.send("Chat Server is Running");
 });
 
-module.exports = app;
+app.module.exports = app;
