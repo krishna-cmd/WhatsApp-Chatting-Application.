@@ -1,29 +1,35 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const repo = "../repositories/user.repository.js";
+const repo = require("../repositories/user.repository");
 
 const SECRET = process.env.SECRET;
 
-async function register(name, email, password) {
-  const hashed = await bcrypt(password, 10);
+async function register(username, email, password) {
+  const hashed = await bcrypt.hash(password, 10);
 
-  return repo.createUser(name, email, hashed);
+  return repo.createUser(username, email, hashed);
 }
 
 async function login(email, password) {
-  const user = await repo.getUser(username);
+  const user = await repo.getUser(email);
 
-  if (!email) {
+  if (!user) {
     throw new Error("User not found!");
   }
-  const isMatched = await bcrypt.compare(password, hashed);
+  const isMatched = await bcrypt.compare(password, user.password);
   if (!isMatched) {
     throw new Error("Invalid Credentials");
   }
 
   const token = jwt.sign(
-    { userID: user.id, email: user.email },
-    process.env.SECRET,
+    {
+      id: user.id,
+      userID: user.id,
+      name: user.name ?? user.username ?? null,
+      username: user.username ?? user.name ?? null,
+      email: user.email,
+    },
+    SECRET,
     {
       expiresIn: "1d",
     },

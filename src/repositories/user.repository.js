@@ -1,9 +1,9 @@
 const pool = require("../config/db");
 
-async function createUser(username, password) {
+async function createUser(username, email, hashed) {
   const result = await pool.query(
-    "INSERT INTO user (username, email, password) VALUES ($1,$2) RETURNING *",
-    [username, email, password],
+    "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *",
+    [username, email, hashed],
   );
   return result.rows[0];
 }

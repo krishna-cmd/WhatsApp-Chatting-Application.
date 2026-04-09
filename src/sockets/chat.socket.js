@@ -2,6 +2,9 @@
 const jwt = require("jsonwebtoken");
 const logger = require("../utils/logger");
 
+const getSocketUserId = (user = {}) => user.id ?? user.userID ?? null;
+const getSocketUserName = (user = {}) => user.username ?? user.name ?? null;
+
 const initSocket = (io) => {
   //  Middleware for authentication (ADVANCED)
   io.use((socket, next) => {
@@ -9,8 +12,14 @@ const initSocket = (io) => {
       const token = socket.handshake.auth?.token;
       if (!token) throw new Error("No token");
 
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      socket.user = decoded;
+      const decoded = jwt.verify(token, process.env.SECRET);
+      const normalizedUserId = getSocketUserId(decoded);
+      if (!normalizedUserId) throw new Error("Invalid token payload");
+
+      socket.user = {
+        ...decoded,
+        id: String(normalizedUserId),
+      };
 
       next();
     } catch (err) {
@@ -19,20 +28,47 @@ const initSocket = (io) => {
   });
 
   io.on("connection", (socket) => {
-    logger.info(`User connected: ${socket.id}, UserId: ${socket.user.id}`);
+    const currentUserId = getSocketUserId(socket.user);
+    if (!currentUserId) {
+      logger.error(`Socket ${socket.id} connected without a valid user id`);
+      socket.disconnect(true);
+      return;
+    }
 
-    // Join personal room
-    socket.join(socket.user.id);
+    logger.info(`User connected: ${socket.id}, UserId: ${currentUserId}`);
+
+    // Join a stable personal room based on the authenticated user id.
+    socket.join(String(currentUserId));
+    const currentUserName = getSocketUserName(socket.user);
+    if (currentUserName) {
+      socket.join(String(currentUserName).trim());
+    }
 
     socket.on("send_message", ({ receiverId, message }) => {
-      const senderId = socket.user.id;
+      const senderId = getSocketUserId(socket.user);
+      const targetRoom = String(receiverId ?? "").trim();
+      const text = String(message ?? "").trim();
 
-      logger.info(`Message from ${senderId} to ${receiverId}: ${message}`);
+      if (!senderId || !targetRoom || !text) {
+        logger.warn(
+          `Invalid message payload from ${socket.id}: sender=${senderId}, receiver=${receiverId}`,
+        );
+        return;
+      }
 
-      io.to(receiverId).emit("receive_message", {
-        senderId,
-        message,
-      });
+      logger.info(`Message from ${senderId} to ${targetRoom}: ${text}`);
+
+      const payload = {
+        senderId: String(senderId),
+        receiverId: targetRoom,
+        message: text,
+      };
+
+      // Send message to receiver
+      io.to(targetRoom).emit("receive_message", payload);
+
+      // Echo message back to sender
+      socket.emit("receive_message", payload);
     });
 
     socket.on("disconnect", () => {

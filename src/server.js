@@ -1,8 +1,9 @@
+require("dotenv").config();
 const http = require("http");
 const { Server } = require("socket.io");
 const app = require("./app");
 const logger = require("./utils/logger");
-const initSocket = require("./sockets/chatSocket");
+const initSocket = require("./sockets/chat.socket");
 
 const server = http.createServer(app);
 

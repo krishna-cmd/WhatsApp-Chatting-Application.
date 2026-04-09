@@ -6,7 +6,9 @@
 <body>
 
 <h2>Realtime Chat</h2>
-<input id="receiver" placeholder="Enter receiver ID"/>
+<p id="current-user"></p>
+<p>Use the other user's numeric id or username in the receiver field.</p>
+<input id="receiver" placeholder="Enter receiver ID or username"/>
 <input id="message" placeholder="Type message"/>
 <button onclick="sendMessage()">Send</button>
 
@@ -16,35 +18,75 @@
 
 <script>
 
-const socket = io("http://localhost:3000");
-const userId = prompt("Enter your userId");
-const receiverId = prompt("Enter your receiverId");
+const token = prompt("Enter your JWT token");
+const socket = io("http://localhost:3000", {
+  auth: {
+    token: token
+  }
+});
 
+function parseUserId(tokenValue) {
+  try {
+    const payload = JSON.parse(atob(tokenValue.split(".")[1]));
+    return payload.userID ?? payload.id ?? "unknown";
+  } catch (error) {
+    return "unknown";
+  }
+}
+
+function parseUserName(tokenValue) {
+  try {
+    const payload = JSON.parse(atob(tokenValue.split(".")[1]));
+    return payload.username ?? payload.name ?? "";
+  } catch (error) {
+    return "";
+  }
+}
+
+const currentUserId = parseUserId(token);
+const currentUserName = parseUserName(token);
+document.getElementById("current-user").innerText = currentUserName
+  ? `Logged in as user: ${currentUserName} (id: ${currentUserId})`
+  : `Logged in as user id: ${currentUserId}`;
 
 socket.on("connect", () => {
   console.log("Connected:", socket.id);
+  console.log("My User ID:", currentUserId);
 });
 
-socket.on("receiver_message", (data) => {
+socket.on("receive_message", (data) => {
   console.log("Message received in browser:", data);
+  console.error("DEBUG: receive_message event fired with data:", data);
 
   const li = document.createElement("li");
-  li.innerText = `${data.senderId || 'unknown'}: ${data.message || data}`;
+  const label = String(data.senderId) === String(currentUserId) ? "You" : `User ${data.senderId || 'unknown'}`;
+  li.innerText = `${label}: ${data.message || data}`;
 
   document.getElementById("messages").appendChild(li);
 });
 
-socket.emit("join", userId);
-
 function sendMessage() {
   const msg = document.getElementById("message").value;
-  
+  const recId = document.getElementById("receiver").value;
 
+  if (!msg.trim()) {
+    alert("Please enter a message");
+    return;
+  }
+
+  if (!recId.trim()) {
+    alert("Please enter receiver ID");
+    return;
+  }
+
+  console.log(`Sending message to ${recId}: ${msg}`);
   socket.emit("send_message", {
-    senderId: userId,
-    receiverId,
+    receiverId: recId.trim(),
     message: msg,
   });
+
+  // Clear input field after sending
+  document.getElementById("message").value = "";
 }
 
 
